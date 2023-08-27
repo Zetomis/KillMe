@@ -43,7 +43,6 @@ export const authOptions: AuthOptions = {
                     },
                 });
             }
-            console.log("ali");
             return true;
         },
     },

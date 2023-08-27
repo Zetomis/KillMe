@@ -30,35 +30,30 @@ const ProfilePage = () => {
         return notFound();
     }
 
-    console.log(userQuery.data);
-
     return (
-        <div>
-            <div className="flex flex-col gap-y-8">
-                <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-x-4">
-                        <div className="w-32 h-32 rounded-full overflow-hidden relative border border-slate-500">
-                            <Image
-                                src={userQuery.data.image}
-                                alt=""
-                                quality={100}
-                                width={128}
-                                height={128}
-                            />
-                        </div>
-                        <h1 className="text-2xl font-bold">
-                            {userQuery.data.name}
-                        </h1>
+        <div className="flex flex-col gap-y-8">
+            <div className="flex justify-between items-center">
+                <div className="flex items-center gap-x-4">
+                    <div className="w-32 h-32 rounded-full overflow-hidden relative border border-slate-500">
+                        <Image
+                            src={userQuery.data.image}
+                            alt=""
+                            quality={100}
+                            width={128}
+                            height={128}
+                        />
                     </div>
-                    {status === "authenticated" &&
-                        session.user.id === userQuery.data.id && (
-                            <Link href={"/create"} className="button default">
-                                Create new Item
-                            </Link>
-                        )}
+                    <h1 className="text-2xl font-bold">
+                        {userQuery.data.name}
+                    </h1>
                 </div>
+                {status === "authenticated" &&
+                    session.user.id === userQuery.data.id && (
+                        <Link href={"/create"} className="button default">
+                            Create new Item
+                        </Link>
+                    )}
             </div>
-            <div>gewgwe</div>
         </div>
     );
 };
