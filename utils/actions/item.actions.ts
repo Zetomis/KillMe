@@ -1,5 +1,6 @@
 "use server";
 
+import { MAX_ITEMS_PER_FEED } from "@/constants";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -22,4 +23,13 @@ export const createNewItem = async (props: createNewItemProps) => {
             sellerId: props.userId,
         },
     });
+};
+
+export const getNewestItem = async (pageNumber: number) => {
+    const posts = await prisma.item.findMany({
+        skip: (pageNumber - 1) * MAX_ITEMS_PER_FEED,
+        take: MAX_ITEMS_PER_FEED,
+    });
+    const amount = await prisma.item.count();
+    return { posts, amount };
 };

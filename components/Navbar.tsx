@@ -9,7 +9,7 @@ const Navbar = () => {
     const { data: session, status } = useSession();
 
     return (
-        <div className="bg-slate-800 text-slate-200 py-4 fixed top-0 inset-x-0">
+        <div className="bg-slate-800 text-slate-200 py-4 fixed top-0 inset-x-0 z-50">
             <div className="container flex items-center justify-between gap-x-6 h-10">
                 <Link
                     href={"/"}

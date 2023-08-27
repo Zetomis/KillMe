@@ -1,12 +1,13 @@
 "use client";
 
 import Loading from "@/components/Loading";
-import { getUserById } from "@/utils/actions/user.actions";
+import { getUserById, getUserItems } from "@/utils/actions/user.actions";
 import { useQuery } from "@tanstack/react-query";
 import { notFound, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import UserItemFeed from "@/components/UserItemFeed";
 
 const ProfilePage = () => {
     const searchParams = useSearchParams();
@@ -53,6 +54,10 @@ const ProfilePage = () => {
                             Create new Item
                         </Link>
                     )}
+            </div>
+            <div>
+                <h1 className="mb-4 text-2xl font-bold">User's Item:</h1>
+                <UserItemFeed userId={id} />
             </div>
         </div>
     );
