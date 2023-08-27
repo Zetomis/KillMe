@@ -26,10 +26,10 @@ export const createNewItem = async (props: createNewItemProps) => {
 };
 
 export const getNewestItem = async (pageNumber: number) => {
-    const posts = await prisma.item.findMany({
+    const items = await prisma.item.findMany({
         skip: (pageNumber - 1) * MAX_ITEMS_PER_FEED,
         take: MAX_ITEMS_PER_FEED,
     });
     const amount = await prisma.item.count();
-    return { posts, amount };
+    return { items, amount };
 };

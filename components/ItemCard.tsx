@@ -22,6 +22,7 @@ const ItemCard = ({ item }: { item: Item }) => {
                     alt=""
                     fill
                     onLoadingComplete={() => setIsImageLoading(false)}
+                    objectFit="cover"
                 />
                 {isImageLoading && (
                     <div className="w-full h-full flex items-center justify-center text-2xl">
