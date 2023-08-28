@@ -20,11 +20,13 @@ const LikeTool = ({
     session: Session;
 }) => {
     const [isUserLiked, setIsUserLiked] = useState(false);
+    const [fakeLikesCount, setFakeLikesCount] = useState(likes.length);
 
     const likeMutation = useMutation({
         mutationKey: ["like", { userId: session.user.id, itemId }],
         mutationFn: () => {
             setIsUserLiked(true);
+            setFakeLikesCount((fakeLikesCount) => fakeLikesCount + 1);
 
             return handleUserLike(session.user.id, itemId);
         },
@@ -34,6 +36,7 @@ const LikeTool = ({
         mutationKey: ["dislike", { userId: session.user.id, itemId }],
         mutationFn: () => {
             setIsUserLiked(false);
+            setFakeLikesCount((fakeLikesCount) => fakeLikesCount - 1);
 
             return handleUserDislike(session.user.id, itemId);
         },
@@ -57,7 +60,7 @@ const LikeTool = ({
                 >
                     <FaHeart />
                 </button>
-                <h1>{likes.length}</h1>
+                <h1>{fakeLikesCount}</h1>
             </div>
         );
     } else {
@@ -69,7 +72,7 @@ const LikeTool = ({
                 >
                     <FaHeartBroken />
                 </button>
-                <h1>{likes.length}</h1>
+                <h1>{fakeLikesCount}</h1>
             </div>
         );
     }
