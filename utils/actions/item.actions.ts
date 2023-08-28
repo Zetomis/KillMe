@@ -33,3 +33,31 @@ export const getNewestItem = async (pageNumber: number) => {
     const amount = await prisma.item.count();
     return { items, amount };
 };
+
+export const getItemById = async (id: string) => {
+    return await prisma.item.findUnique({
+        where: { id },
+        include: {
+            seller: true,
+            likes: true,
+        },
+    });
+};
+
+export const handleUserLike = async (userId: string, itemId: string) => {
+    return await prisma.like.create({
+        data: {
+            userId,
+            itemId,
+        },
+    });
+};
+
+export const handleUserDislike = async (userId: string, itemId: string) => {
+    return await prisma.like.deleteMany({
+        where: {
+            userId: { equals: userId },
+            itemId: { equals: itemId },
+        },
+    });
+};
