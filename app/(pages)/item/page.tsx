@@ -1,5 +1,6 @@
 "use client";
 
+import AddToCartButton from "@/components/AddToCartButton";
 import LikeTool from "@/components/LikeTool";
 import Loading from "@/components/Loading";
 import SomethingWentWrong from "@/components/SomethingWentWrong";
@@ -70,7 +71,7 @@ const ItemPage = () => {
                         session={session}
                     />
                 )}
-                <button className="button default">Add to Cart</button>
+                <AddToCartButton itemId={itemQuery.data.id} />
                 <ReactMarkDown className="prose mt-8">
                     {itemQuery.data.description}
                 </ReactMarkDown>

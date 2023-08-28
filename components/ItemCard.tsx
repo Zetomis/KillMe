@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaSpinner } from "react-icons/fa";
+import AddToCartButton from "./AddToCartButton";
 
 const ItemCard = ({ item }: { item: Item }) => {
     const [isImageLoading, setIsImageLoading] = useState(true);
@@ -37,9 +38,10 @@ const ItemCard = ({ item }: { item: Item }) => {
                         >
                             Detail
                         </Link>
-                        <button className="button ghost w-full">
-                            Add to Cart
-                        </button>
+                        <AddToCartButton
+                            className="ghost w-full"
+                            itemId={item.id}
+                        />
                     </div>
                 )}
             </div>

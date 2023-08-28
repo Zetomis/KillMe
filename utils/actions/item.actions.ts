@@ -56,8 +56,35 @@ export const handleUserLike = async (userId: string, itemId: string) => {
 export const handleUserDislike = async (userId: string, itemId: string) => {
     return await prisma.like.deleteMany({
         where: {
-            userId: { equals: userId },
-            itemId: { equals: itemId },
+            userId,
+            itemId,
         },
     });
+};
+
+export const addItemToCart = async (userId: string, itemId: string) => {
+    const currentItem = await prisma.cartItem.findUnique({
+        where: {
+            userId_itemId: { userId, itemId },
+        },
+    });
+
+    if (currentItem) {
+        return await prisma.cartItem.update({
+            where: {
+                id: currentItem.id,
+            },
+            data: {
+                amount: currentItem.amount + 1,
+            },
+        });
+    } else {
+        return await prisma.cartItem.create({
+            data: {
+                userId,
+                itemId,
+                amount: 1,
+            },
+        });
+    }
 };
