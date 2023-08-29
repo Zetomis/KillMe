@@ -17,7 +17,6 @@ const Navbar = () => {
                 >
                     KILLME
                 </Link>
-                <div className="flex-1">SearchBar</div>
                 {status === "authenticated" ? (
                     <div className="flex items-center gap-x-4">
                         <Link

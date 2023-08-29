@@ -7,6 +7,9 @@ const prisma = new PrismaClient();
 export const getUserCartItem = async (userId: string) => {
     return await prisma.cartItem.findMany({
         where: { userId },
+        include: {
+            item: true,
+        },
     });
 };
 
